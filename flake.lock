@@ -1,0 +1,22 @@
+{
+  "nodes": {
+    "pkgs": {
+      "locked": {
+        "narHash": "sha256-8TXN7EmuTkQ/ErogXALIHVkrjRE0o9JzOA5V7Hi7puY=",
+        "path": "/home/chivay/repos/nixpkgs",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/chivay/repos/nixpkgs",
+        "type": "path"
+      }
+    },
+    "root": {
+      "inputs": {
+        "pkgs": "pkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
