@@ -1,10 +1,37 @@
 {
-  inputs.pkgs.url = "/home/chivay/repos/nixpkgs";
-
-  outputs = { self, pkgs }: {
-     nixosConfigurations.xakep = pkgs.lib.nixosSystem {
-       system = "x86_64-linux";
-       modules = [ ./configuration.nix ];
-     };
+  inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
+  outputs =
+    { self, nixpkgs, home-manager, nixos-hardware, flake-utils }@inputs:
+    flake-utils.lib.eachDefaultSystem
+      (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        inherit (pkgs) lib;
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = (with pkgs; [
+            nixpkgs-fmt
+          ]);
+        };
+      }) // {
+      nixosConfigurations = nixpkgs.lib.mapAttrs
+        (hostname: { system, modulesExtra, ... }: nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./machines/${hostname}/${hostname}.nix
+            home-manager.nixosModules.home-manager
+          ] ++ modulesExtra;
+        })
+        (import ./machines inputs);
+    };
 }
