@@ -8,7 +8,12 @@
 
   programs.chromium = {
     enable = true;
-    extensions = [{ id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }];
+    extensions = [
+      # uBlock Origin
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
+      # Bitwarden
+      { id = "nngceckbapebfimnlniiiahkandclblb"; }
+    ];
   };
   programs.firefox.enable = true;
 
