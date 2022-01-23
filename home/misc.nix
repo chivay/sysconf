@@ -56,6 +56,7 @@
     ]))
 
     signal-desktop
+    element-desktop
     ghidra-bin
   ];
 
