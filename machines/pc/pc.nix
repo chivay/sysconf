@@ -29,6 +29,7 @@
   ];
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  services.usbmuxd.enable = true;
 
   environment.systemPackages = with pkgs; [ virt-manager ];
   virtualisation.libvirtd = {

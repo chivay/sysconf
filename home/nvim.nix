@@ -9,6 +9,7 @@
       copilot-vim
       fugitive
       fzf-vim
+      zig-vim
 
       (nvim-treesitter.withPlugins (plugins:
         with plugins; [
