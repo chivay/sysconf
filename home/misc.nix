@@ -57,6 +57,7 @@
 
     signal-desktop
     element-desktop
+    discord
     ghidra-bin
   ];
 
