@@ -19,6 +19,23 @@
   networking.interfaces.wlan0.useDHCP = true;
   networking.wireless.iwd.enable = true;
 
+  networking.wireguard = {
+    enable = true;
+    interfaces = {
+      p4net = {
+        ips = ["198.18.2.4/16"];
+        privateKeyFile = "/persist/p4net/privkey";
+        peers = [
+          {
+            publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
+            allowedIPs = ["198.18.0.0/16"];
+            endpoint = "gbur.potega.xyz:51821";
+          }
+        ];
+      };
+    };
+  };
+
   programs.sway.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
