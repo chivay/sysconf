@@ -58,5 +58,8 @@
       }
       EOF
     '';
+    extraPackages = with pkgs; [
+      wl-clipboard
+    ];
   };
 }
