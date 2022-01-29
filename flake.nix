@@ -29,6 +29,9 @@
         (hostname: { system, modulesExtra, ... }: nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            ({
+              nix.registry.nixpkgs.flake = nixpkgs;
+            })
             ./machines/${hostname}/${hostname}.nix
           ] ++ modulesExtra;
         })
