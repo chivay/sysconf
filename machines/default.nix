@@ -29,6 +29,6 @@ in
 
   gbur = {
     system = "aarch64-linux";
-    modulesExtra = [];
+    modulesExtra = [ ];
   };
 }

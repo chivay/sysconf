@@ -23,12 +23,12 @@
     enable = true;
     interfaces = {
       p4net = {
-        ips = ["198.18.2.4/16"];
+        ips = [ "198.18.2.4/16" ];
         privateKeyFile = "/persist/p4net/privkey";
         peers = [
           {
             publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
-            allowedIPs = ["198.18.0.0/16"];
+            allowedIPs = [ "198.18.0.0/16" ];
             endpoint = "gbur.potega.xyz:51821";
           }
         ];
