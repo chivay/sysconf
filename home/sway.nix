@@ -40,6 +40,26 @@
     longitude = "21.011293104313307";
   };
 
+  services.kanshi = {
+    enable = true;
+    profiles = {
+      dualhome = {
+        outputs = [
+          {
+            criteria = "Samsung Electric Company S24D330 0x00005B31";
+            mode = "1920x1080@60Hz";
+            position = "0,0";
+          }
+          {
+            criteria = "Unknown 2369M BRSE19A003169";
+            mode = "1920x1080@60Hz";
+            position = "1920,0";
+          }
+        ];
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     alacritty
     wdisplays
