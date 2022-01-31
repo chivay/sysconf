@@ -5,12 +5,15 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    binaryCaches = [ "https://zig-nightly.cachix.org" ];
-    binaryCachePublicKeys = [
-      "zig-nightly.cachix.org-1:OnBNrwrXNoCtCzjuMEfruWSaZEixGGSvFhc9OBtx1wg="
-    ];
 
-    autoOptimiseStore = true;
+    settings = {
+      trusted-substituters = [ "https://zig-nightly.cachix.org" ];
+      trusted-public-keys = [
+        "zig-nightly.cachix.org-1:OnBNrwrXNoCtCzjuMEfruWSaZEixGGSvFhc9OBtx1wg="
+      ];
+      auto-optimise-store = true;
+    };
+
     gc = {
       automatic = true;
       dates = "weekly";
