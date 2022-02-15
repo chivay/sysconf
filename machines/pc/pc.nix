@@ -52,6 +52,7 @@
   virtualisation.libvirtd = {
     enable = true;
   };
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "22.05";
 }
