@@ -15,7 +15,7 @@
 
   time.timeZone = "Europe/Warsaw";
   networking.useDHCP = false;
-  networking.interfaces.enp5s0.useDHCP = true;
+  networking.interfaces.enp5s0.useDHCP = false;
   networking.interfaces.wlan0.useDHCP = true;
   networking.wireless.iwd.enable = true;
 
