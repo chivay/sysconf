@@ -14,6 +14,8 @@
           # Screenshot helper
           Print = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
 
+          "${modifier}+Shift+o" = "exec loginctl lock-session";
+
           # Add support for 10th workspace
           "${modifier}+0" = "workspace number 10";
           "${modifier}+Shift+0" = "move container to workspace number 10";
@@ -58,6 +60,27 @@
         ];
       };
     };
+  };
+
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 60;
+        command = "swaymsg 'output * dpms off'";
+        resumeCommand = "swaymsg 'output * dpms on'";
+      }
+      {
+        timeout = 60 * 5;
+        command = "loginctl lock-session";
+      }
+    ];
+    events = [
+      {
+        event = "lock";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+    ];
   };
 
   home.packages = with pkgs; [
