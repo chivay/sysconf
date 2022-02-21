@@ -2,8 +2,12 @@
 {
   wayland.windowManager.sway = {
     enable = true;
+    extraConfig = ''
+    for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
+    '';
     config = {
       modifier = "Mod4";
+      menu = "${pkgs.wofi}/bin/wofi --show drun -G -I";
       terminal = "alacritty";
       input = { "type:keyboard" = { xkb_layout = "pl"; }; };
       keybindings =
@@ -74,11 +78,20 @@
         timeout = 60 * 5;
         command = "loginctl lock-session";
       }
+      {
+        timeout = 60 * 60;
+        command = "systemctl suspend";
+      }
     ];
     events = [
       {
         event = "lock";
         command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+
+      {
+        event = "before-sleep";
+        command = "loginctl lock-session";
       }
     ];
   };
