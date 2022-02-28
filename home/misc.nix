@@ -28,6 +28,11 @@
     enable = true;
     userName = "Hubert Jasudowicz";
     userEmail = "hubert.jasudowicz@gmail.com";
+    extraConfig = {
+      submodule = {
+        recurse = true;
+      };
+    };
   };
 
   home.packages = with pkgs; [

@@ -35,7 +35,7 @@
 
   gtk = {
     enable = true;
-    iconTheme.package = pkgs.gnome_themes_standard;
+    iconTheme.package = pkgs.gnome-themes-extra;
     iconTheme.name = "Adwaita";
   };
 
@@ -50,6 +50,9 @@
     enable = true;
     profiles = {
       dualhome = {
+        exec = [
+          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to DP-1"
+        ];
         outputs = [
           {
             criteria = "Samsung Electric Company S24D330 0x00005B31";
@@ -70,12 +73,12 @@
     enable = true;
     timeouts = [
       {
-        timeout = 60;
+        timeout = 60 * 5;
         command = "swaymsg 'output * dpms off'";
         resumeCommand = "swaymsg 'output * dpms on'";
       }
       {
-        timeout = 60 * 5;
+        timeout = 60 * 10;
         command = "loginctl lock-session";
       }
       {

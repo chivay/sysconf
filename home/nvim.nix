@@ -10,6 +10,7 @@
       fugitive
       fzf-vim
       zig-vim
+      rust-vim
 
       (nvim-treesitter.withPlugins (plugins:
         with plugins; [
@@ -24,6 +25,7 @@
           tree-sitter-yaml
           tree-sitter-zig
           tree-sitter-go
+          tree-sitter-rust
           nvim-treesitter-textobjects
         ]))
     ];
