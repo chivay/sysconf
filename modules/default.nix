@@ -6,4 +6,6 @@
     ./sound.nix
     ./chromium.nix
   ];
+
+  xdg.portal.wlr.enable = true;
 }

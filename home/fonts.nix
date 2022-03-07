@@ -5,5 +5,6 @@
     cascadia-code
     noto-fonts
     noto-fonts-emoji
+    nerdfonts
   ];
 }

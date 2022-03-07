@@ -70,5 +70,5 @@
     powerOnBoot = true;
   };
 
-  imports = [ ../modules/frp-proxy.nix ../modules/postfix.nix ];
+  imports = [];
 }

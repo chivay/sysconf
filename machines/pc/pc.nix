@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ../../modules
+      ../../modules/intel-vaapi.nix
       ../../home
     ];
 

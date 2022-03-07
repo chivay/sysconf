@@ -102,5 +102,6 @@
   home.packages = with pkgs; [
     alacritty
     wdisplays
+    wl-clipboard
   ];
 }

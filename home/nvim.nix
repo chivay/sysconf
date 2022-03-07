@@ -11,6 +11,8 @@
       fzf-vim
       zig-vim
       rust-vim
+      nvim-lspconfig
+      coq_nvim
 
       (nvim-treesitter.withPlugins (plugins:
         with plugins; [
@@ -29,39 +31,12 @@
           nvim-treesitter-textobjects
         ]))
     ];
-    extraConfig = ''
-      let $FZF_DEFAULT_COMMAND = 'rg --files'
-
-      let mapleader = ","
-      au BufRead,BufNewFile *.nix setf nix
-
-      set nocompatible
-      set noswapfile
-      set nobackup
-      set ignorecase
-
-      set number relativenumber
-
-      set expandtab
-      set shiftwidth=4
-      set tabstop=4
-
-      nmap <Leader>e :Files<enter>
-      nmap <Leader>f :Buffers<enter>
-
-      lua <<EOF
-      require'nvim-treesitter.configs'.setup {
-        highlight = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-        },
-      }
-      EOF
-    '';
+    extraConfig = builtins.readFile ./init.vim;
     extraPackages = with pkgs; [
       wl-clipboard
+      pyright
+      rust-analyzer
+      zls
     ];
   };
 }
