@@ -27,8 +27,8 @@ in
     modulesExtra = [ ];
   };
 
-  #gbur = {
-  #  system = "aarch64-linux";
-  #  modulesExtra = [ ];
-  #};
+  gbur = {
+    system = "aarch64-linux";
+    modulesExtra = [ ];
+  };
 }
