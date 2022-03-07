@@ -25,6 +25,16 @@
             nixpkgs-fmt
           ]);
         };
+        checks = {
+          format = pkgs.runCommand "check-format"
+            {
+              buildInputs = [ pkgs.nixpkgs-fmt ];
+            }
+            ''
+              ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt --check ${./.}
+              touch $out
+            '';
+        };
       }) // {
       nixosConfigurations = nixpkgs.lib.mapAttrs
         (hostname: { system, modulesExtra, ... }: nixpkgs.lib.nixosSystem {
