@@ -33,6 +33,7 @@
             ({
               nix.registry.nixpkgs.flake = nixpkgs;
             })
+            agenix.nixosModules.age
             ./machines/${hostname}/${hostname}.nix
           ] ++ modulesExtra;
         })
