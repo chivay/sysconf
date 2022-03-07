@@ -70,5 +70,5 @@
     powerOnBoot = true;
   };
 
-  imports = [];
+  imports = [ ];
 }

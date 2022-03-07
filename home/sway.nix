@@ -3,7 +3,7 @@
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
-    for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
+      for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
     '';
     config = {
       modifier = "Mod4";
