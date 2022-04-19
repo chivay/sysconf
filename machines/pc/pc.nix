@@ -18,6 +18,7 @@
   networking.useDHCP = false;
   networking.interfaces.enp5s0.useDHCP = false;
   networking.interfaces.wlan0.useDHCP = true;
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
   networking.wireless.iwd.enable = true;
 
   networking.wireguard = {
