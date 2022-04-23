@@ -49,6 +49,10 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.usbmuxd.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [gutenprint hplip ]; 
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
 
   environment.systemPackages = with pkgs; [ virt-manager ];
   virtualisation.libvirtd = {
