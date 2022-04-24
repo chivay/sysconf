@@ -20,6 +20,7 @@
         inherit (pkgs) lib;
       in
       {
+        formatter = pkgs.nixpkgs-fmt;
         devShell = pkgs.mkShell {
           buildInputs = (with pkgs; [
             nixpkgs-fmt

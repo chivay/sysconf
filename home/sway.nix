@@ -8,11 +8,11 @@
       exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
     '';
     extraSessionCommands = ''
-    export SDL_VIDEODRIVER=wayland
-    # needs qt5.qtwayland in systemPackages
-    export QT_QPA_PLATFORM=wayland
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    export _JAVA_AWT_WM_NONREPARENTING=1
+      export SDL_VIDEODRIVER=wayland
+      # needs qt5.qtwayland in systemPackages
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
     '';
     config = {
       modifier = "Mod4";

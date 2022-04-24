@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./p4net.nix
       ../../modules
       ../../modules/intel-vaapi.nix
       ../../home
@@ -15,29 +16,22 @@
 
   networking.hostName = "nixos";
 
-  time.timeZone = "Europe/Warsaw";
-  networking.useDHCP = false;
-  networking.interfaces.enp5s0.useDHCP = false;
-  networking.interfaces.wlan0.useDHCP = true;
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
-  networking.wireless.iwd.enable = true;
-
-  networking.wireguard = {
+  systemd.network = {
     enable = true;
-    interfaces = {
-      p4net = {
-        ips = [ "198.18.2.4/16" ];
-        privateKeyFile = "/persist/p4net/privkey";
-        peers = [
-          {
-            publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
-            allowedIPs = [ "198.18.0.0/16" ];
-            endpoint = "gbur.potega.xyz:51821";
-          }
-        ];
+    networks = {
+      "40-wlan0" = {
+        matchConfig.Name = "wlan0";
+        DHCP = "yes";
+        dhcpV4Config.UseDNS = false;
       };
     };
   };
+
+  time.timeZone = "Europe/Warsaw";
+  networking.useDHCP = false;
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
+  networking.wireless.iwd.enable = true;
+  networking.useNetworkd = true;
 
   programs.sway.enable = true;
   hardware.opengl.enable = true;
@@ -51,11 +45,13 @@
   services.blueman.enable = true;
   services.usbmuxd.enable = true;
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [gutenprint hplip ]; 
+  services.printing.drivers = with pkgs; [ gutenprint hplip ];
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  services.resolved.enable = true;
+
+  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools ];
   virtualisation.libvirtd = {
     enable = true;
   };
