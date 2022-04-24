@@ -4,6 +4,8 @@
     enable = true;
     extraConfig = ''
       for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
+      set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+      exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
     '';
     config = {
       modifier = "Mod4";
@@ -17,6 +19,9 @@
         lib.mkOptionDefault {
           # Screenshot helper
           Print = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
+
+          XF86AudioRaiseVolume = "exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK";
+          XF86AudioLowerVolume = "exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK";
 
           "${modifier}+Shift+o" = "exec loginctl lock-session";
 
