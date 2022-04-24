@@ -7,6 +7,13 @@
       set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
       exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
     '';
+    extraSessionCommands = ''
+    export SDL_VIDEODRIVER=wayland
+    # needs qt5.qtwayland in systemPackages
+    export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
     config = {
       modifier = "Mod4";
       menu = "${pkgs.wofi}/bin/wofi --show drun -G -I";
@@ -22,6 +29,15 @@
 
           XF86AudioRaiseVolume = "exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK";
           XF86AudioLowerVolume = "exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK";
+          XF86AudioMute = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          XF86AudioMicMute = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          XF86AudioPlay = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          XF86AudioStop = "exec ${pkgs.playerctl}/bin/playerctl stop";
+          XF86AudioNext = "exec ${pkgs.playerctl}/bin/playerctl next";
+          XF86AudioPrev = "exec ${pkgs.playerctl}/bin/playerctl previous";
+
+          #XF86MonBrightnessDown = "exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
+          #XF86MonBrightnessUp  = "exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
 
           "${modifier}+Shift+o" = "exec loginctl lock-session";
 

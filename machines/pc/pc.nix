@@ -11,6 +11,7 @@
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
+  programs.wireshark.enable = true;
 
   networking.hostName = "nixos";
 
