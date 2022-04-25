@@ -1,7 +1,11 @@
 { lib, config, options, modulesPath, specialArgs }:
 {
   security.pki.certificates = [ (builtins.readFile ../../files/p4net-ca.crt) ];
-  age.secrets.pc-wg-p4net.file = ../../secrets/pc-wg-p4net.age;
+  age.secrets.pc-wg-p4net = {
+    file = ../../secrets/pc-wg-p4net.age;
+    mode = "0440";
+    group = "systemd-network";
+  };
 
   systemd.network = {
     enable = true;
