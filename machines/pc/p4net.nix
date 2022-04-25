@@ -1,13 +1,15 @@
 { lib, config, options, modulesPath, specialArgs }:
 {
   security.pki.certificates = [ (builtins.readFile ../../files/p4net-ca.crt) ];
+  age.secrets.pc-wg-p4net.file = ../../secrets/pc-wg-p4net.age;
+
   systemd.network = {
     enable = true;
     netdevs = {
       "90-p4net" = {
         netdevConfig = { Kind = "wireguard"; Name = "wg-p4net"; };
         wireguardConfig = {
-          PrivateKeyFile = "/persist/p4net/privkey";
+          PrivateKeyFile = config.age.secrets.pc-wg-p4net.path;
         };
         wireguardPeers = [
           {
@@ -30,7 +32,7 @@
         matchConfig.Name = "wg-p4net";
         dns = [ "198.18.1.1" ];
         address = [ "198.18.2.4/32" ];
-        domains = [ "p4" ];
+        domains = [ "~p4" "~18.198.in-addr.arpa" ];
         networkConfig = {
           DNSSEC = false;
         };

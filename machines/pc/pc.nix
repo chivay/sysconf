@@ -16,6 +16,8 @@
 
   networking.hostName = "nixos";
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
+
   systemd.network = {
     enable = true;
     networks = {
@@ -48,6 +50,7 @@
   services.printing.drivers = with pkgs; [ gutenprint hplip ];
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
+  services.openssh.enable = true;
 
   services.resolved.enable = true;
 
