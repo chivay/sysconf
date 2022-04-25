@@ -84,7 +84,12 @@ in
         # pc
         {
           publicKey = "st4IweE89WwcvnNAtV5Q+kn7YjG4KwWztY+S+RUYxHE=";
-          allowedIPs = [ "198.18.2.4/32" ];
+          allowedIPs = [
+	    # PC ip
+	    "198.18.2.4/32"
+	    # k8s subnet :duck001:
+	    "198.18.2.96/27"
+	  ];
         }
       ];
     };
