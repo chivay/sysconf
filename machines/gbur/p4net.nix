@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   localAddr = "198.18.1.1";
   localIP = "${localAddr}/32";
@@ -38,7 +38,7 @@ let
   mkNetPeer = name: peer: pkgs.lib.nameValuePair "p4net-${name}" {
     ips = [ localIP ];
     listenPort = peer.listenPort;
-    privateKeyFile = "/root/wg-keys/private";
+    privateKeyFile = config.age.secrets.gbur-wg-p4net.path;
     allowedIPsAsRoutes = false;
     postSetup = "ip route add ${peer.peerIP}/32 dev p4net-${name}";
     postShutdown = "ip route del ${peer.peerIP}/32";
@@ -53,18 +53,21 @@ let
 in
 {
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  age.secrets.gbur-wg-p4net = {
+    file = ../../secrets/gbur-wg-p4net.age;
+  };
 
   networking.wireguard.interfaces = {
     wg-gateway = {
       ips = [ gatewaySubnet ];
-      privateKeyFile = "/root/wg-keys/private";
+      privateKeyFile = config.age.secrets.gbur-wg-p4net.path;
       listenPort = gatewayWgPort;
     };
 
     wg-intra = {
       ips = [ localIP ];
       listenPort = intraWgPort;
-      privateKeyFile = "/root/wg-keys/private";
+      privateKeyFile = config.age.secrets.gbur-wg-p4net.path;
       postSetup = "ip route add ${intraSubnet} dev wg-intra";
       postShutdown = "ip route del ${intraSubnet}";
       peers = [

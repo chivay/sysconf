@@ -6,4 +6,5 @@ let
 in
 {
   "pc-wg-p4net.age".publicKeys = [ chivay pc ];
+  "gbur-wg-p4net.age".publicKeys = [ chivay gbur ];
 }
