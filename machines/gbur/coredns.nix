@@ -21,20 +21,6 @@
         }
       }
 
-
-      1.18.198.in-addr.arpa {
-        hosts {
-          198.18.1.1 gbur.chivay.p4
-          198.18.1.2 mruk.chivay.p4
-        }
-      }
-
-      2.18.198.in-addr.arpa {
-        hosts {
-          198.18.2.2 xakep.chivay.p4
-        }
-      }
-
       57.18.198.in-addr.arpa {
         forward . 198.18.57.1
       }
