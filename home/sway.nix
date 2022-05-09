@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  sway-audio-idle-inhibit = pkgs.callPackage ../pkgs/sway-audio-idle-inhibit.nix {};
+  sway-audio-idle-inhibit = pkgs.callPackage ../pkgs/sway-audio-idle-inhibit.nix { };
 in
 {
   wayland.windowManager.sway = {
