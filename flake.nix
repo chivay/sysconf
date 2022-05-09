@@ -21,7 +21,7 @@
       in
       {
         formatter = pkgs.nixpkgs-fmt;
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = (with pkgs; [
             nixpkgs-fmt
           ]);
