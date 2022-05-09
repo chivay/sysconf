@@ -36,6 +36,9 @@
 
   virtualisation.docker.enable = true;
 
+  system.autoUpgrade.flake = "github:chivay/sysconf";
+  system.autoUpgrade.enable = true;
+
   ##services.inspircd.enable = true;
   ##services.inspircd.config = ''
   ##<admin name="Hubert Jasudowicz" nick="chivay" email="root@chivay.p4">
