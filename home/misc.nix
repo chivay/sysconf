@@ -64,6 +64,9 @@
     element-desktop
     discord
     ghidra-bin
+
+    man-pages
+    man-pages-posix
   ];
 
   services.gpg-agent = {

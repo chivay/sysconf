@@ -59,6 +59,7 @@
     enable = true;
   };
   virtualisation.docker.enable = true;
+  documentation.dev.enable = true;
 
   system.stateVersion = "22.05";
 }

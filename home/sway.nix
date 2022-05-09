@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
+let
+  sway-audio-idle-inhibit = pkgs.callPackage ../pkgs/sway-audio-idle-inhibit.nix {};
+in
 {
   wayland.windowManager.sway = {
     enable = true;
@@ -6,6 +9,7 @@
       for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
       set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
       exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
+      exec ${sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit
     '';
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
