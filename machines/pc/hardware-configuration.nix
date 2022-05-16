@@ -1,6 +1,10 @@
 { pkgs, lib, config, ... }:
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "intel_iommu=on"
+    "iommu=pt"
+  ];
   boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
