@@ -42,6 +42,11 @@
           inherit system;
           modules = [
             ({
+              nix.nixPath = [
+                "nixpkgs=${nixpkgs}"
+              ];
+            })
+            ({
               nix.registry.nixpkgs.flake = nixpkgs;
             })
             agenix.nixosModules.age

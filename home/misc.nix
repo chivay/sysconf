@@ -67,10 +67,16 @@
 
     man-pages
     man-pages-posix
+
+    usbutils
+    pciutils
   ];
 
   services.gpg-agent = {
     enable = true;
     extraConfig = "pinentry-program ${pkgs.pinentry-gtk2}/bin/pinentry";
   };
+
+  programs.nix-index.enable = true;
+  programs.nix-index.enableBashIntegration = true;
 }
