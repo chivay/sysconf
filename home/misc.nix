@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  imhex = pkgs.callPackage ../pkgs/imhex.nix { };
+in
 {
   programs.home-manager.enable = true;
 
@@ -70,6 +73,8 @@
 
     usbutils
     pciutils
+
+    imhex
   ];
 
   services.gpg-agent = {
