@@ -53,6 +53,7 @@
   services.openssh.enable = true;
 
   services.resolved.enable = true;
+  services.mullvad-vpn.enable = true;
 
   environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools ];
   virtualisation.libvirtd = {
