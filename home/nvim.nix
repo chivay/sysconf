@@ -4,32 +4,33 @@
     enable = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
+      # a nice colorscheme
+      # https://github.com/phanviet/vim-monokai-pro
+      vim-monokai-pro
+
+      # support for a plethora of languages
+      # https://github.com/sheerun/vim-polyglot
+      vim-polyglot
+
+      # comment out stuff easily
+      # https://github.com/tpope/vim-commentary
+      # :h commentary
+
       vim-commentary
+      # manage brackets, parents, tags etc.
+      # https://github.com/tpope/vim-surround
+      # :h surround
       vim-surround
-      copilot-vim
+
+      # Git helper for vim 
       fugitive
+      # open file in GitHub with  :GBrowse
+      vim-rhubarb
+
       fzf-vim
-      zig-vim
-      rust-vim
       nvim-lspconfig
       coq_nvim
 
-      (nvim-treesitter.withPlugins (plugins:
-        with plugins; [
-          tree-sitter-bash
-          tree-sitter-c
-          tree-sitter-cpp
-          tree-sitter-json
-          tree-sitter-latex
-          tree-sitter-nix
-          tree-sitter-python
-          tree-sitter-toml
-          tree-sitter-yaml
-          tree-sitter-zig
-          tree-sitter-go
-          tree-sitter-rust
-          nvim-treesitter-textobjects
-        ]))
     ];
     extraConfig = builtins.readFile ./init.vim;
     extraPackages = with pkgs; [
