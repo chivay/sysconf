@@ -86,6 +86,11 @@ in
           publicKey = "st4IweE89WwcvnNAtV5Q+kn7YjG4KwWztY+S+RUYxHE=";
           allowedIPs = [ "198.18.2.4/32" ];
         }
+        # prv
+        {
+          publicKey = "h2P8A7MU1QN7J6E/vSuerjE9skzWG7U7fjt5fpzRKUk=";
+          allowedIPs = [ "198.18.2.5/32" ];
+        }
       ];
     };
   } // (pkgs.lib.mapAttrs' mkNetPeer netPeers);
