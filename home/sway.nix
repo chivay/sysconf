@@ -99,27 +99,27 @@ in
     timeouts = [
       {
         timeout = 60 * 5;
-        command = "swaymsg 'output * dpms off'";
-        resumeCommand = "swaymsg 'output * dpms on'";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
         timeout = 60 * 10;
-        command = "loginctl lock-session";
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
       }
       {
         timeout = 60 * 60;
-        command = "systemctl suspend";
+        command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
     events = [
       {
-        event = "lock";
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        event = "after-resume";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
 
       {
         event = "before-sleep";
-        command = "loginctl lock-session";
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
       }
     ];
   };
