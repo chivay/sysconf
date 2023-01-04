@@ -2,8 +2,7 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,7 +11,7 @@
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-stable, home-manager, nixos-hardware, flake-utils, agenix, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, flake-utils, agenix, ... }@inputs:
     flake-utils.lib.eachDefaultSystem
       (system:
       let

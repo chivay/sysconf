@@ -55,7 +55,7 @@
   services.resolved.enable = true;
   services.mullvad-vpn.enable = true;
 
-  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools ];
+  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools virtiofsd ];
   virtualisation.libvirtd = {
     enable = true;
   };

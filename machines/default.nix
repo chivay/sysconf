@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-stable, home-manager, nixos-hardware, ... }:
+{ nixpkgs, home-manager, nixos-hardware, ... }:
 let
   hardware = nixos-hardware.nixosModules;
 in
