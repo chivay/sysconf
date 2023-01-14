@@ -43,7 +43,7 @@ in
           #XF86MonBrightnessDown = "exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
           #XF86MonBrightnessUp  = "exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
 
-          "${modifier}+Shift+o" = "exec loginctl lock-session";
+          "${modifier}+Shift+o" = "exec ${pkgs.systemd}/bin/loginctl lock-session";
 
           # Add support for 10th workspace
           "${modifier}+0" = "workspace number 10";
@@ -94,32 +94,25 @@ in
     };
   };
 
-  services.swayidle = {
+  services.swayidle = let 
+    mkMinutes = minutes: 60 * minutes;
+  in {
     enable = true;
     timeouts = [
       {
-        timeout = 60 * 5;
+        timeout = mkMinutes 5;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
-        timeout = 60 * 10;
-        command = "${pkgs.systemd}/bin/loginctl lock-session";
-      }
-      {
-        timeout = 60 * 60;
+        timeout = mkMinutes 60;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
     events = [
       {
-        event = "after-resume";
-        command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-      }
-
-      {
-        event = "before-sleep";
-        command = "${pkgs.systemd}/bin/loginctl lock-session";
+        event = "lock";
+        command = "${pkgs.swaylock}/bin/swaylock";
       }
     ];
   };
