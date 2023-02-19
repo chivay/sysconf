@@ -85,7 +85,7 @@ in
             position = "0,0";
           }
           {
-            criteria = "Unknown 2369M BRSE19A003169";
+            criteria = "AOC 2369M BRSE19A003169";
             mode = "1920x1080@60Hz";
             position = "1920,0";
           }
