@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-  imhex = pkgs.callPackage ../pkgs/imhex.nix { };
 in
 {
   programs.home-manager.enable = true;

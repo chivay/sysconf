@@ -9,7 +9,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    helvum
     pavucontrol
     pulseaudio
   ];
