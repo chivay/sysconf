@@ -48,8 +48,8 @@
             ({
               nix.registry.nixpkgs.flake = nixpkgs;
               nix.registry.zig.to = {
-                owner = "chivay";
-                repo = "zig-nightly";
+                owner = "mitchellh";
+                repo = "zig-overlay";
                 type = "github";
               };
 

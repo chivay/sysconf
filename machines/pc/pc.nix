@@ -51,6 +51,7 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.openssh.enable = true;
+  services.tailscale.enable = true;
 
   services.resolved.enable = true;
   services.mullvad-vpn.enable = true;

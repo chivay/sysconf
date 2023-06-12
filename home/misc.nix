@@ -74,6 +74,9 @@ in
     pciutils
 
     imhex
+
+    joplin-desktop
+    binutils
   ];
 
   services.gpg-agent = {
