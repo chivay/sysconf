@@ -35,7 +35,10 @@ nmap <Leader>e :Files<enter>
 " ,f to fzf open buffers
 nmap <Leader>f :Buffers<enter>
 
+nmap <Leader>g :HopWord<enter>
+
 lua << EOF
+require'hop'.setup {}
 vim.api.nvim_create_user_command(
   'ZigStdLib',
   function(input)

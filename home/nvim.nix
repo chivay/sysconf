@@ -28,9 +28,8 @@
       vim-rhubarb
 
       fzf-vim
-      nvim-lspconfig
-      coq_nvim
 
+      hop-nvim
     ];
     extraConfig = builtins.readFile ./init.vim;
     extraPackages = with pkgs; [

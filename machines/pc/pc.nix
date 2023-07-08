@@ -17,6 +17,7 @@
   networking.hostName = "nixos";
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
+  boot.bootspec.enable = true;
 
   systemd.network = {
     enable = true;
@@ -56,12 +57,19 @@
   services.resolved.enable = true;
   services.mullvad-vpn.enable = true;
 
-  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools virtiofsd ];
+  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools virtiofsd sbctl ];
   virtualisation.libvirtd = {
     enable = true;
   };
   virtualisation.docker.enable = true;
   documentation.dev.enable = true;
+
+  nix.settings = {
+    # we have 16 + 4 threads;
+    # use up to 10 threads ~ half a CPU;
+    max-jobs = 2;
+    cores = 5;
+  };
 
   system.stateVersion = "22.05";
 }
