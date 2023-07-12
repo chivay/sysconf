@@ -61,6 +61,7 @@
   virtualisation.libvirtd = {
     enable = true;
   };
+  virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.docker.enable = true;
   documentation.dev.enable = true;
 

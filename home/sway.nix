@@ -23,6 +23,10 @@ in
       menu = "${pkgs.wofi}/bin/wofi --show drun -G -I";
       terminal = "alacritty";
       input = { "type:keyboard" = { xkb_layout = "pl"; }; };
+      bars = [{
+        position="bottom";
+        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs config-default.toml";}
+      ];
       keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
@@ -93,6 +97,8 @@ in
       };
     };
   };
+
+  programs.i3status-rust.enable = true;
 
   services.swayidle = let 
     mkMinutes = minutes: 60 * minutes;
