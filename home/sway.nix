@@ -24,9 +24,9 @@ in
       terminal = "alacritty";
       input = { "type:keyboard" = { xkb_layout = "pl"; }; };
       bars = [{
-        position="bottom";
-        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs config-default.toml";}
-      ];
+        position = "bottom";
+        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs config-default.toml";
+      }];
       keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
@@ -100,28 +100,30 @@ in
 
   programs.i3status-rust.enable = true;
 
-  services.swayidle = let 
-    mkMinutes = minutes: 60 * minutes;
-  in {
-    enable = true;
-    timeouts = [
-      {
-        timeout = mkMinutes 5;
-        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
-        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-      }
-      {
-        timeout = mkMinutes 60;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-    events = [
-      {
-        event = "lock";
-        command = "${pkgs.swaylock}/bin/swaylock";
-      }
-    ];
-  };
+  services.swayidle =
+    let
+      mkMinutes = minutes: 60 * minutes;
+    in
+    {
+      enable = true;
+      timeouts = [
+        {
+          timeout = mkMinutes 5;
+          command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+          resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+        }
+        {
+          timeout = mkMinutes 60;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
+      events = [
+        {
+          event = "lock";
+          command = "${pkgs.swaylock}/bin/swaylock";
+        }
+      ];
+    };
 
   home.packages = with pkgs; [
     alacritty
