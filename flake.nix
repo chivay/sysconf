@@ -4,10 +4,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-util = {
-      url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
@@ -49,21 +46,8 @@
       nixosConfigurations = nixpkgs.lib.mapAttrs
         (hostname: { system, modulesExtra, ... }: nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
-            ({
-              nix.nixPath = [
-                "nixpkgs=${nixpkgs}"
-              ];
-            })
-            ({
-              nix.registry.nixpkgs.flake = nixpkgs;
-              nix.registry.zig.to = {
-                owner = "mitchellh";
-                repo = "zig-overlay";
-                type = "github";
-              };
-
-            })
             agenix.nixosModules.age
             ./machines/${hostname}/${hostname}.nix
           ] ++ modulesExtra;

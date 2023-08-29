@@ -1,4 +1,4 @@
-{ lib, config, options, modulesPath, specialArgs }:
+{ lib, config, options, modulesPath, specialArgs, ... }:
 {
   security.pki.certificates = [ (builtins.readFile ../../files/p4net-ca.crt) ];
   age.secrets.pc-wg-p4net = {

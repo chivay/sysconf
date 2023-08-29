@@ -1,17 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 {
   nix = {
     package = pkgs.nixVersions.stable;
+    nixPath = [
+      "nixpkgs=${specialArgs.inputs.nixpkgs}"
+    ];
+
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
 
     settings = {
-      trusted-substituters = [ "https://zig-nightly.cachix.org" ];
-      trusted-public-keys = [
-        "zig-nightly.cachix.org-1:OnBNrwrXNoCtCzjuMEfruWSaZEixGGSvFhc9OBtx1wg="
-      ];
       auto-optimise-store = true;
+    };
+
+    registry.nixpkgs.flake = specialArgs.inputs.nixpkgs;
+    registry.zig.to = {
+      owner = "mitchellh";
+      repo = "zig-overlay";
+      type = "github";
     };
 
     gc = {
