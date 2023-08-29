@@ -49,7 +49,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             agenix.nixosModules.age
-            ./machines/${hostname}/${hostname}.nix
+            ./machines/${hostname}/configuration.nix
           ] ++ modulesExtra;
         })
         (import ./machines inputs);
