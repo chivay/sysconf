@@ -7,7 +7,8 @@
   ];
   boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "i915" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.blacklistedKernelModules = ["asus_nb_wmi" "asus_wmi"];
+  boot.kernelModules = [ "kvm-intel" "nct6775" ];
   boot.extraModulePackages = [ ];
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.lanzaboote = {

@@ -22,8 +22,8 @@
   systemd.network = {
     enable = true;
     networks = {
-      "40-wlan0" = {
-        matchConfig.Name = "wlan0";
+      "40-eth" = {
+        matchConfig.Name = "enp5s0";
         DHCP = "yes";
         dhcpV4Config.UseDNS = false;
       };
@@ -57,7 +57,14 @@
   services.resolved.enable = true;
   services.mullvad-vpn.enable = true;
 
-  environment.systemPackages = with pkgs; [ git virt-manager wireguard-tools virtiofsd sbctl ];
+  environment.systemPackages = with pkgs; [
+    git
+    virt-manager
+    wireguard-tools
+    virtiofsd
+    sbctl
+    lm_sensors
+  ];
   virtualisation.libvirtd = {
     enable = true;
   };

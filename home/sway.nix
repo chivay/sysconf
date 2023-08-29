@@ -86,12 +86,12 @@ in
           {
             criteria = "Samsung Electric Company S24D330 0x00005B31";
             mode = "1920x1080@60Hz";
-            position = "0,0";
+            position = "1920,0";
           }
           {
             criteria = "AOC 2369M BRSE19A003169";
             mode = "1920x1080@60Hz";
-            position = "1920,0";
+            position = "0,0";
           }
         ];
       };
