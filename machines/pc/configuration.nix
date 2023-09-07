@@ -23,7 +23,7 @@
     enable = true;
     networks = {
       "40-eth" = {
-        matchConfig.Name = "enp5s0";
+        matchConfig.Name = "enp4s0";
         DHCP = "yes";
         dhcpV4Config.UseDNS = false;
       };
@@ -45,6 +45,7 @@
     intel-media-driver
   ];
   hardware.bluetooth.enable = true;
+  hardware.rtl-sdr.enable = true;
   services.blueman.enable = true;
   services.usbmuxd.enable = true;
   services.printing.enable = true;
