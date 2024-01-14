@@ -10,9 +10,29 @@
       ../../home
     ];
 
+  environment.etc = {
+    "pipewire/pipewire.conf.d/pipewire.conf".text = ''
+       context.modules = [
+        {   name = libpipewire-module-roc-sink
+            args = {
+                fec.code = rs8m
+                remote.ip = 192.168.1.10
+                remote.source.port = 10001
+                remote.repair.port = 10002
+                sink.name = "RP4 ROC"
+                sink.props = {
+                   node.name = "roc-sink"
+                }
+            }
+        }
+      ]
+    '';
+  };
+
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
   programs.wireshark.enable = true;
+  programs.mosh.enable = true;
 
   networking.hostName = "nixos";
 
@@ -21,9 +41,15 @@
 
   systemd.network = {
     enable = true;
+    links = {
+      "40-eth" = {
+        matchConfig.MACAddress = "04:42:1a:eb:58:bd";
+        linkConfig.WakeOnLan = "magic";
+      };
+    };
     networks = {
       "40-eth" = {
-        matchConfig.Name = "enp4s0";
+        matchConfig.Name = "eth0";
         DHCP = "yes";
         dhcpV4Config.UseDNS = false;
       };
@@ -51,7 +77,7 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ gutenprint hplip ];
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.openssh.enable = true;
   services.tailscale.enable = true;
 

@@ -75,7 +75,8 @@ in
 
     imhex
 
-    joplin-desktop
+    # 32 bit wtf?
+    #joplin-desktop
     binutils
   ];
 
