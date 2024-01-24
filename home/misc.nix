@@ -65,7 +65,7 @@ in
     signal-desktop
     element-desktop
     discord
-    ghidra-bin
+    ghidra
 
     man-pages
     man-pages-posix
