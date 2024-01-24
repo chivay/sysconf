@@ -2,9 +2,11 @@
 {
   programs.alacritty = {
     enable = true;
-    settings.font.normal = {
-      family = "monospace";
-      style = "Regular";
+    settings = {
+      font.normal = {
+        family = "Cascadia Code";
+        style = "Regular";
+      };
     };
   };
 }
