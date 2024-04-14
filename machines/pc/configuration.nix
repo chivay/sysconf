@@ -10,25 +10,6 @@
       ../../home
     ];
 
-  environment.etc = {
-    "pipewire/pipewire.conf.d/pipewire.conf".text = ''
-       context.modules = [
-        {   name = libpipewire-module-roc-sink
-            args = {
-                fec.code = rs8m
-                remote.ip = 192.168.1.10
-                remote.source.port = 10001
-                remote.repair.port = 10002
-                sink.name = "RP4 ROC"
-                sink.props = {
-                   node.name = "roc-sink"
-                }
-            }
-        }
-      ]
-    '';
-  };
-
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
   programs.wireshark.enable = true;
@@ -51,19 +32,21 @@
       "40-eth" = {
         matchConfig.Name = "eth0";
         DHCP = "yes";
-        dhcpV4Config.UseDNS = false;
+        dhcpV4Config.UseDNS = true;
       };
     };
   };
 
   time.timeZone = "Europe/Warsaw";
   networking.useDHCP = false;
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
+  #networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
   networking.wireless.iwd.enable = true;
   networking.useNetworkd = true;
 
   programs.sway.enable = true;
   hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = with pkgs; [
     vaapiIntel
     vaapiVdpau
@@ -91,6 +74,7 @@
     virtiofsd
     sbctl
     lm_sensors
+    zellij
   ];
   virtualisation.libvirtd = {
     enable = true;
