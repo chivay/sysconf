@@ -15,6 +15,7 @@
     htop
     tmux
     git
+    zellij
   ];
 
   programs.neovim = {

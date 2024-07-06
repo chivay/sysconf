@@ -77,25 +77,28 @@ in
 
   services.kanshi = {
     enable = true;
-    profiles = {
-      dualhome = {
-        exec = [
-          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to DP-1"
-        ];
-        outputs = [
-          {
-            criteria = "Samsung Electric Company S24D330 0x00005B31";
-            mode = "1920x1080@60Hz";
-            position = "1920,0";
-          }
-          {
-            criteria = "AOC 2369M BRSE19A003169";
-            mode = "1920x1080@60Hz";
-            position = "0,0";
-          }
-        ];
-      };
-    };
+    settings = [ 
+      {
+        profile = {
+          name = "dualhome";
+          exec = [
+            "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to DP-1"
+          ];
+          outputs = [
+            {
+              criteria = "Samsung Electric Company S24D330 0x00005B31";
+              mode = "1920x1080@60Hz";
+              position = "1920,0";
+            }
+            {
+              criteria = "AOC 2369M BRSE19A003169";
+              mode = "1920x1080@60Hz";
+              position = "0,0";
+            }
+          ];
+        };
+      }
+    ];
   };
 
   programs.i3status-rust.enable = true;

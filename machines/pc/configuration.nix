@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./p4net.nix
       ../../modules
       ../../modules/intel-vaapi.nix
       ../../home
@@ -44,10 +43,8 @@
   networking.useNetworkd = true;
 
   programs.sway.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = with pkgs; [
     vaapiIntel
     vaapiVdpau
     libvdpau-va-gl

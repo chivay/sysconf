@@ -6,8 +6,6 @@ in
 
   programs.bash.enable = true;
 
-  programs.ssh.enable = true;
-
   programs.chromium = {
     enable = true;
     extensions = [
@@ -78,6 +76,8 @@ in
     # 32 bit wtf?
     #joplin-desktop
     binutils
+    teamspeak_client
+    ansible
   ];
 
   services.gpg-agent = {
