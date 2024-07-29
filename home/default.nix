@@ -11,7 +11,6 @@
       imports = [
         ./alacritty.nix
         ./fonts.nix
-        ./htop.nix
         ./misc.nix
         ./multimedia.nix
         ./nvim.nix

@@ -13,6 +13,7 @@
   programs.neovim.defaultEditor = true;
   programs.wireshark.enable = true;
   programs.mosh.enable = true;
+  programs.nix-ld.enable = true;
 
   networking.hostName = "nixos";
 
@@ -55,11 +56,12 @@
   services.blueman.enable = true;
   services.usbmuxd.enable = true;
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ gutenprint hplip ];
+  #services.printing.drivers = with pkgs; [ gutenprint hplip ];
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
   services.openssh.enable = true;
   services.tailscale.enable = true;
+  services.flatpak.enable = true;
 
   services.resolved.enable = true;
   #services.mullvad-vpn.enable = true;
@@ -79,6 +81,8 @@
   virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.docker.enable = true;
   documentation.dev.enable = true;
+
+  services.pcscd.enable = true;
 
   nix.settings = {
     # we have 16 + 4 threads;

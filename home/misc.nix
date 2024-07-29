@@ -36,9 +36,11 @@ in
   };
 
   home.packages = with pkgs; [
+    htop
     rbw
     libnotify
     unzip
+    zip
     p7zip
     file
     imagemagick
@@ -78,6 +80,8 @@ in
     binutils
     teamspeak_client
     ansible
+
+    yt-dlp
   ];
 
   services.gpg-agent = {
