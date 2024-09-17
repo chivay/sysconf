@@ -19,6 +19,7 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
   boot.bootspec.enable = true;
+  boot.tmp.useTmpfs = true;
 
   systemd.network = {
     enable = true;
@@ -45,6 +46,7 @@
 
   programs.sway.enable = true;
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [
     vaapiIntel
     vaapiVdpau
@@ -89,6 +91,7 @@
     # use up to 10 threads ~ half a CPU;
     max-jobs = 2;
     cores = 5;
+    system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ] ++ [ "gccarch-alderlake" ];
   };
 
   system.stateVersion = "22.05";
