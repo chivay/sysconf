@@ -5,6 +5,7 @@
     cascadia-code
     noto-fonts
     noto-fonts-emoji
-    nerdfonts
+    # wolp, 8GiB
+    #nerdfonts
   ];
 }
