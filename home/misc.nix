@@ -50,7 +50,7 @@ in
     gnupg1
     jq
 
-    neomutt
+    # neomutt
     ripgrep
     zathura
 
