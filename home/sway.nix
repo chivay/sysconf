@@ -86,7 +86,7 @@ in
           ];
           outputs = [
             {
-              criteria = "Samsung Electric Company S24D330 0x00005B31";
+              criteria = "Samsung Electric Company S24D330 0x5A5A5131";
               mode = "1920x1080@60Hz";
               position = "1920,0";
             }
