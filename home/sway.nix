@@ -102,6 +102,41 @@ in
   };
 
   programs.i3status-rust.enable = true;
+  programs.i3status-rust.bars = {
+  default = {
+    blocks = [
+      {
+        alert = 10.0;
+        block = "disk_space";
+        info_type = "available";
+        interval = 60;
+        path = "/";
+        warning = 20.0;
+      }
+      {
+        block = "memory";
+        format = " $icon $mem_used_percents.eng(w:2) ";
+      }
+      {
+        block = "cpu";
+        interval = 1;
+      }
+      {
+        block = "net";
+        format = "$icon $ip / $speed_down.eng(prefix:K) / $speed_up.eng(prefix:K) ";
+        device="eth0";
+      }
+      {
+        block = "sound";
+      }
+      {
+        block = "time";
+        format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+        interval = 10;
+      }
+    ];
+  };
+  };
 
   services.swayidle =
     let
