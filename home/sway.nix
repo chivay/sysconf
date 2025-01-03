@@ -6,7 +6,9 @@ in
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
+      seat seat0 xcursor_theme Adwaita
       for_window [class="^Chromium-browser$"] inhibit_idle fullscreen
+
       set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
       exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
     '';
