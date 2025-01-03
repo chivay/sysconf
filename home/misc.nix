@@ -75,8 +75,6 @@ in
 
     imhex
 
-    # 32 bit wtf?
-    #joplin-desktop
     binutils
     teamspeak_client
     ansible
