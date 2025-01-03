@@ -78,13 +78,14 @@ in
     binutils
     teamspeak_client
     ansible
-
     yt-dlp
+    chatblade
+    kicad
   ];
 
   services.gpg-agent = {
     enable = true;
-    extraConfig = "pinentry-program ${pkgs.pinentry-gtk2}/bin/pinentry";
+    pinentryPackage = pkgs.pinentry-gtk2;
   };
 
   programs.nix-index.enable = true;
