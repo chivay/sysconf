@@ -1,6 +1,8 @@
 { config, pkgs, lib, modulesPath, ... }:
 
 {
+  nixpkgs.overlays = [
+  ];
   imports =
     [
       ./hardware-configuration.nix
@@ -17,9 +19,10 @@
 
   networking.hostName = "nixos";
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
   boot.bootspec.enable = true;
-  boot.tmp.useTmpfs = true;
+
+  boot.tmp.useTmpfs = false;
 
   systemd.network = {
     enable = true;
@@ -48,13 +51,19 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [
-    vaapiIntel
+    #vaapiIntel
     vaapiVdpau
     libvdpau-va-gl
     intel-media-driver
   ];
   hardware.bluetooth.enable = true;
   hardware.rtl-sdr.enable = true;
+  hardware.amdgpu.opencl.enable = true;
+
+  # services.xserver.videoDrivers = ["nvidia"];
+  # hardware.nvidia.open = true;
+  # hardware.nvidia.modesetting.enable = true;
+
   services.blueman.enable = true;
   services.usbmuxd.enable = true;
   services.printing.enable = true;
@@ -69,6 +78,7 @@
   #services.mullvad-vpn.enable = true;
 
   environment.systemPackages = with pkgs; [
+    adwaita-icon-theme
     git
     virt-manager
     wireguard-tools
@@ -76,6 +86,8 @@
     sbctl
     lm_sensors
     zellij
+    htop
+    cifs-utils
   ];
   virtualisation.libvirtd = {
     enable = true;

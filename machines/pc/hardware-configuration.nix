@@ -32,7 +32,12 @@
       options = [ "subvol=root" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/b7e63b84-348a-492a-ade2-d9972fcb2dd6";
+  boot.initrd.luks.devices."root" =
+    {
+      device = "/dev/disk/by-uuid/b7e63b84-348a-492a-ade2-d9972fcb2dd6";
+      bypassWorkqueues = true;
+      allowDiscards = true;
+    };
 
   fileSystems."/home" =
     {

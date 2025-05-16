@@ -61,7 +61,7 @@ in
 
   services.mako = {
     enable = true;
-    defaultTimeout = 2000;
+    settings.defaultTimeout = "2000";
   };
 
   gtk = {
@@ -75,32 +75,6 @@ in
     provider = "manual";
     latitude = "52.23020816947126";
     longitude = "21.011293104313307";
-  };
-
-  services.kanshi = {
-    enable = true;
-    settings = [ 
-      {
-        profile = {
-          name = "dualhome";
-          exec = [
-            "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to DP-1"
-          ];
-          outputs = [
-            {
-              criteria = "Samsung Electric Company S24D330 0x5A5A5131";
-              mode = "1920x1080@60Hz";
-              position = "1920,0";
-            }
-            {
-              criteria = "AOC 2369M BRSE19A003169";
-              mode = "1920x1080@60Hz";
-              position = "0,0";
-            }
-          ];
-        };
-      }
-    ];
   };
 
   programs.i3status-rust.enable = true;
